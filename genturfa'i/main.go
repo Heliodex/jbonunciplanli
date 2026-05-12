@@ -4,19 +4,17 @@ import (
 	"bytes"
 	"fmt"
 	"os"
+	"time"
 
 	"golang.org/x/exp/ebnf"
 )
 
 const datnyveicme = "bynyfys"
 
-func main() {
-	fmt.Println("coi")
-
+func tcidujegenturfa_i() (ebnf.Grammar, error) {
 	seltcidu, selsre := os.ReadFile(datnyveicme)
 	if selsre != nil {
-		fmt.Println("fliba lonu tcidu -", selsre)
-		return
+		return nil, fmt.Errorf("fliba lonu tcidu - %w", selsre)
 	}
 
 	seltcidu = bytes.ReplaceAll(seltcidu, []byte{'<'}, []byte{'['})
@@ -25,11 +23,20 @@ func main() {
 
 	gerna, selsre := ebnf.Parse(datnyveicme, tcidu)
 	if selsre != nil {
-		fmt.Println("fliba lonu genturfa'i -", selsre)
-		return
+		return nil, fmt.Errorf("fliba lonu genturfa'i - %w", selsre)
 	}
 
-	fmt.Println(gerna)
+	return gerna, nil
+}
+
+func main() {
+	fmt.Println("coi")
+
+	gerna, selsre := tcidujegenturfa_i()
+	if selsre != nil {
+		fmt.Println("fliba lonu tcidu je genturfa'i -", selsre)
+		return
+	}
 
 	for cmene, genjva := range gerna {
 		mekso := genjva.Expr
@@ -58,4 +65,18 @@ func main() {
 			fmt.Println("*ebnf.Bad")
 		}
 	}
+
+	for ; ; time.Sleep(100 * time.Millisecond) {
+		gerna, selsre := tcidujegenturfa_i()
+		if selsre != nil {
+			fmt.Println("fliba lonu tcidu je genturfa'i -", selsre)
+			continue
+		}
+
+		if selsre = ebnf.Verify(gerna, "text"); selsre != nil {
+			fmt.Println("fliba lonu cipcta -", selsre)
+			continue
+		}
+	}
+
 }
