@@ -1,6 +1,7 @@
 package main
 
 import (
+	"bytes"
 	"fmt"
 	"os"
 
@@ -12,11 +13,15 @@ const datnyveicme = "bynyfys"
 func main() {
 	fmt.Println("coi")
 
-	tcidu, selsre := os.Open(datnyveicme)
+	seltcidu, selsre := os.ReadFile(datnyveicme)
 	if selsre != nil {
 		fmt.Println("fliba lonu tcidu -", selsre)
 		return
 	}
+
+	seltcidu = bytes.ReplaceAll(seltcidu, []byte{'<'}, []byte{'['})
+	seltcidu = bytes.ReplaceAll(seltcidu, []byte{'>'}, []byte{']'})
+	tcidu := bytes.NewBuffer(seltcidu)
 
 	gerna, selsre := ebnf.Parse(datnyveicme, tcidu)
 	if selsre != nil {
