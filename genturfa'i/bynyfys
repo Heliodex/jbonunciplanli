@@ -3,21 +3,93 @@ consonant =
 	| "j" | "k" | "l" | "m"	| "n"
 	| "p" | "r" | "s" | "t"	| "v"
 	| "x" | "z".
-vowel = "a" | "e" | "i" | "o" | "u" | "y".
+terminalvowel = "a" | "e" | "i" | "o" | "u".
+vowel = terminalvowel | "y".
 
 letter = consonant | vowel | "'".
 
 anything = {letter | " "}.
+any_word = {letter | " "}.
 
 cBE = "be".
 cBEhO = "be'o".
+cBIhE = "bi'e".
 cBO = "bo".
+cBOI = "boi".
+cBRIVLA = "." {letter} terminalvowel ".".
+cBU = "bu".
+cBY = cBY1 | cBY2.
+	cBY1 = "ga'e" | "ge'o" | "je'o" | "jo'o" | "lo'a" | "na'a" | "ru'o" | "se'e" | "to'a".
+	cBY2 =
+		"by" | "cy" | "dy" | "fy" | "gy"
+		| "jy" | "ky" | "ly" | "my" | "ny"
+		| "py" | "ry" | "sy" | "ty" | "vy"
+		| "xy" | "zy"
+		| "y'y".
+cCEI = "cei".
 cCMEVLA = "." {letter} consonant ".".
+cCO = "co".
+cCU = "cu".
+cFA = "fa" | "fai" | "fe" | "fi" | "fi'a" | "fo" | "fu".
+cFIhO = "fi'o".
+cFEhU = "fe'u".
+cFOI = "foi".
+cFUhA = "fu'a".
+cGA = "ga" | "ge" | "ge'i" | "go" | "gu".
+cGI = "gi".
+cGOhA =
+	"bu'a" | "bu'e" | "bu'i"
+	| "co'e" | "du"
+	| "go'a" | "go'e" | "go'i" | "go'o" | "go'u"
+	| "mo" | "nei" | "no'a".
+cGUhA = "gu'a" | "gu'e" | "gu'i" | "gu'o" | "gu'u".
 cI = "i".
+cJAI = "jai".
+cJOhI = "jo'i".
+cKE = "ke".
+cKEhE = "ke'e".
+cKEI = "kei".
+cKU = "ku".
+cKUhE = "ku'e".
+cLAhE = "la'e" | "lu'a" | "lu'e" | "lu'i" | "lu'o" | "tu'a" | "vu'i".
+cLAU = "ce'a" | "lau" | "tau" | "zai".
+cLUhU = "lu'u".
+cMAhO = "ma'o".
+cME = "me".
+cMEhU = "me'u".
+cMOhE = "mo'e".
+cMOI = "cu'o" | "mei" | "moi" | "si'e" | "va'e".
 cNA = "ja'a" | "na".
+cNAhE = "je'a" | "na'e" | "no'e".
+cNAhU = "na'u".
 cNAI = "nai".
+cNIhE = "ni'e".
 cNIhO = "ni'o" | "no'i".
+cNU = "jei" | "ka" | "li'i" | "mu'e" | "ni" | "nu" | "pu'u" | "si'o" | "su'u" | "za'i" | "zu'o".
+cNUhA = "nu'a".
+cNUhI = "nu'i".
+cNUhU = "nu'u".
+cPA = cPA1 | cPA2 | cPA3 | cPA4 | cPA5.
+	cPA1 = "pa" | "re" | "ci" | "vo" | "mu" | "xa" | "ze" | "bi" | "so" | "no".
+	cPA2 = "dau" | "fei" | "gai" | "jau" | "rei" | "vai".
+	cPA3 = "ce'i" | "fi'u" | "ki'o" | "ma'u" | "me'i" | "ni'u" | "pi" | "pi'e" | "ra'e" | "za'u".
+	cPA4 =
+		"da'a" | "du'e" | "ji'i" | "mo'a" | "rau" | "ro"
+		| "so'a" | "so'e" | "so'i" | "so'o" | "so'u"
+		| "su'e" | "su'o" | "xo".
+	cPA5 = "ci'i" | "ka'o" | "pai" | "tu'o".
+cPEhO = "pe'o".
+cRAhO = "ra'o".
+cSE = "se" | "te" | "ve" | "xe".
+cTEhU = "te'u".
+cTEI = "tei".
 cVAU = "vau".
+cVUhU = cVUhU1 | cVUhU2 | cVUhU3.
+	cVUhU1 = "fe'i" | "pi'i" | "su'i" | "vu'u".
+	cVUhU2 =  "fa'i" | "gei" | "ju'u" | "pa'i" | "te'a".
+	cVUhU3 =  "cu'a" | "de'o" | "fe'a" | "ne'o" | "va'a".
+	cVUhU4 = "pi'a" | "re'a" | "ri'o" | "sa'i" | "sa'o" | "si'i".
+cZEI = "zei".
 
 text = [{cNAI}] [{cCMEVLA} [{free}] | text_R] [joik_jek] text_1.
 	text_R1 = indicators.
@@ -38,12 +110,15 @@ bridi_tail = bridi_tail_1 [gihek [stag] cKE [{free}] bridi_tail <cKEhE [{free}]>
 bridi_tail_1 = bridi_tail_2 {[gihek [{free}] bridi_tail_2 tail_terms]}.
 bridi_tail_2 = bridi_tail_3 [gihek [stag] cBO [{free}] bridi_tail_2 tail_terms].
 bridi_tail_3 = selbri tail_terms | gek_sentence.
-gek_sentence = gek subsentence gik subsentence tail_terms | [tag] cKE [{free}] gek_sentence <cKEhE [{free}]> | cNA [{free}] gek_sentence.
+gek_sentence =
+	gek subsentence gik subsentence tail_terms
+	| [tag] cKE [{free}] gek_sentence <cKEhE [{free}]>
+	| cNA [{free}] gek_sentence.
 tail_terms = [terms] <cVAU [{free}]>.
 terms = {terms_1}.
 terms_1 = terms_2 {[cPEhE [{free}] joik_jek terms_2]}.
 terms_2 = term {[cCEhE [{free}] term]}.
-term = sumti | (tag | cFA [{free}]) (sumti | <cKU [{free}]>) | termset | cNA KU [{free}].
+term = sumti | (tag | cFA [{free}]) (sumti | <cKU [{free}]>) | termset | cNA cKU [{free}].
 termset = cNUhI [{free}] gek terms <cNUhU [{free}]> gik terms <cNUhU [{free}]> | cNUhI [{free}] terms <cNUhU [{free}]>.
 sumti = sumti_1 [cVUhO [{free}] relative_clauses].
 sumti_1 = sumti_2 [(ek | joik) [stag] cKE [{free}] sumti <cKEhE [{free}]>].
@@ -51,11 +126,23 @@ sumti_2 = sumti_3 {[joik_ek sumti_3]}.
 sumti_3 = sumti_4 [(ek | joik) [stag] cBO [{free}] sumti_3].
 sumti_4 = sumti_5 | gek sumti gik sumti_4.
 sumti_5 = [quantifier] sumti_6 [relative_clauses] | quantifier selbri <cKU [{free}]> [relative_clauses].
-sumti_6 = (cLAhE [{free}] | cNAhE BO [{free}]) [relative_clauses] sumti <cLUhU [{free}]> | cKOhA [{free}] | lerfu_string <cBOI [{free}]> | cLA [{free}] [relative_clauses] {cCMEVLA} [{free}] | (cLA | cLE) [{free}] sumti_tail <cKU [{free}]> | cLI [{free}] mex <cLOhO [{free}]> | cZO any_word [{free}] | cLU text <cLIhU [{free}]> | cLOhU {any_word} cLEhU [{free}] | cZOI any_word anything any_word [{free}].
+sumti_6 =
+	(cLAhE [{free}] | cNAhE cBO [{free}]) [relative_clauses] sumti <cLUhU [{free}]>
+	| cKOhA [{free}]
+	| lerfu_string <cBOI [{free}]>
+	| cLA [{free}] [relative_clauses] {cCMEVLA} [{free}]
+	| (cLA | cLE) [{free}] sumti_tail <cKU [{free}]>
+	| cLI [{free}] mex <cLOhO [{free}]>
+	| cZO any_word [{free}]
+	| cLU text <cLIhU [{free}]>
+	| cLOhU {any_word} cLEhU [{free}]
+	| cZOI any_word anything any_word [{free}].
 sumti_tail = [sumti_6 [relative_clauses]] sumti_tail_1 | relative_clauses sumti_tail_1.
 sumti_tail_1 = [quantifier] selbri [relative_clauses] | quantifier sumti.
 relative_clauses = relative_clause {[cZIhE [{free}] relative_clause]}.
-relative_clause = cGOI [{free}] term <cGEhU [{free}]> | cNOI [{free}] subsentence <cKUhO [{free}]>.
+relative_clause =
+	cGOI [{free}] term <cGEhU [{free}]>
+	| cNOI [{free}] subsentence <cKUhO [{free}]>.
 selbri = [tag] selbri_1.
 selbri_1 = selbri_2 | cNA [{free}] selbri.
 selbri_2 = selbri_3 [cCO [{free}] selbri_2].
@@ -65,7 +152,18 @@ selbri_5 = selbri_6 [(jek | joik) [stag] cBO [{free}] selbri_5].
 selbri_6 = tanru_unit [cBO [{free}] selbri_6] | [cNAhE [{free}]] guhek selbri gik selbri_6.
 tanru_unit = tanru_unit_1 {[cCEI [{free}] tanru_unit_1]}.
 tanru_unit_1 = tanru_unit_2 [linkargs].
-tanru_unit_2 = cBRIVLA [{free}] | cGOhA [cRAhO] [{free}] | cKE [{free}] selbri_3 <cKEhE [{free}]> | cME [{free}] sumti <cMEhU [{free}]> [cMOI [{free}]] | (number | lerfu_string) cMOI [{free}] | cNUhA [{free}] mex_operator | cSE [{free}] tanru_unit_2 | cJAI [{free}] [tag] tanru_unit_2 | any_word {cZEI any_word} | cNAhE [{free}] tanru_unit_2 | cNU [cNAI] [{free}] {[joik_jek cNU [cNAI] [{free}]]} subsentence <cKEI [{free}]>.
+tanru_unit_2 =
+	cBRIVLA [{free}]
+	| cGOhA [cRAhO] [{free}]
+	| cKE [{free}] selbri_3 <cKEhE [{free}]>
+	| cME [{free}] sumti <cMEhU [{free}]> [cMOI [{free}]]
+	| (number | lerfu_string) cMOI [{free}]
+	| cNUhA [{free}] mex_operator
+	| cSE [{free}] tanru_unit_2
+	| cJAI [{free}] [tag] tanru_unit_2
+	| any_word {cZEI any_word}
+	| cNAhE [{free}] tanru_unit_2
+	| cNU [cNAI] [{free}] {[joik_jek cNU [cNAI] [{free}]]} subsentence <cKEI [{free}]>.
 linkargs = cBE [{free}] term [links] <cBEhO [{free}]>.
 links = cBEI [{free}] term [links].
 quantifier = number <cBOI [{free}]> | cVEI [{free}] mex <cVEhO [{free}]>.
@@ -77,11 +175,23 @@ rp_operand = operand | rp_expression.
 operator = operator_1 {[joik_jek operator_1 | joik [stag] cKE [{free}] operator <cKEhE [{free}]>]}.
 operator_1 = operator_2 | guhek operator_1 gik operator_2 | operator_2 (jek | joik) [stag] cBO [{free}] operator_1.
 operator_2 = mex_operator | cKE [{free}] operator <cKEhE [{free}]>.
-mex_operator = cSE [{free}] mex_operator | cNAhE [{free}] mex_operator | cMAhO [{free}] mex <cTEhU [{free}]> | cNAhU [{free}] selbri <cTEhU [{free}]> | cVUhU [{free}].
+mex_operator =
+	cSE [{free}] mex_operator
+	| cNAhE [{free}] mex_operator
+	| cMAhO [{free}] mex <cTEhU [{free}]>
+	| cNAhU [{free}] selbri <cTEhU [{free}]>
+	| cVUhU [{free}].
 operand = operand_1 [(ek | joik) [stag] cKE [{free}] operand <cKEhE [{free}]>].
 operand_1 = operand_2 {[joik_ek operand_2]}.
 operand_2 = operand_3 [(ek | joik) [stag] cBO [{free}] operand_2].
-operand_3 = quantifier | lerfu_string <cBOI [{free}]> | cNIhE [{free}] selbri <cTEhU [{free}]> | cMOhE [{free}] sumti <cTEhU [{free}]> | cJOhI [{free}] {mex_2} <cTEhU [{free}]> | gek operand gik operand_3 | (cLAhE [{free}] | cNAhE BO [{free}]) operand <cLUhU [{free}]>.
+operand_3 =
+	quantifier
+	| lerfu_string <cBOI [{free}]>
+	| cNIhE [{free}] selbri <cTEhU [{free}]>
+	| cMOhE [{free}] sumti <cTEhU [{free}]>
+	| cJOhI [{free}] {mex_2} <cTEhU [{free}]>
+	| gek operand gik operand_3
+	| (cLAhE [{free}] | cNAhE cBO [{free}]) operand <cLUhU [{free}]>.
 number = cPA {[cPA | lerfu_word]}.
 lerfu_string = lerfu_word {[cPA | lerfu_word]}.
 lerfu_word = cBY | any_word cBU | cLAU lerfu_word | cTEI lerfu_string cFOI.
@@ -129,7 +239,16 @@ space_interval = space_interval_R.
 	space_interval_R = space_interval_R1 | space_interval_R2 | space_interval_R1 space_interval_R2.
 space_int_props = {cFEhE interval_property}.
 interval_property = number cROI [cNAI] | cTAhE [cNAI] | cZAhO [cNAI].
-free = cSEI [{free}] [terms [cCU [{free}]]] selbri <cSEhU> | cSOI [{free}] sumti [sumti] <cSEhU> | vocative [relative_clauses] selbri [relative_clauses] <cDOhU> | vocative [relative_clauses] {cCMEVLA} [{free}] [relative_clauses] <cDOhU> | vocative [sumti] <cDOhU> | (number | lerfu_string) cMAI | cTO text <cTOI> | cXI [{free}] (number | lerfu_string) <cBOI> | cXI [{free}] cVEI [{free}] mex <cVEhO>.
+free =
+	cSEI [{free}] [terms [cCU [{free}]]] selbri <cSEhU>
+	| cSOI [{free}] sumti [sumti] <cSEhU>
+	| vocative [relative_clauses] selbri [relative_clauses] <cDOhU>
+	| vocative [relative_clauses] {cCMEVLA} [{free}] [relative_clauses] <cDOhU>
+	| vocative [sumti] <cDOhU>
+	| (number | lerfu_string) cMAI
+	| cTO text <cTOI>
+	| cXI [{free}] (number | lerfu_string) <cBOI>
+	| cXI [{free}] cVEI [{free}] mex <cVEhO>.
 vocative = vocative_R.
 	vocative_R1 = {cCOI [cNAI]}.
 	vocative_R2 = cDOI.
