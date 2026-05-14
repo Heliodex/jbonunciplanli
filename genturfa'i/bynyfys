@@ -11,6 +11,7 @@ letter = consonant | vowel | "'".
 anything = {letter | " "}.
 any_word = {letter | " "}.
 
+cA = "a" | "e" | "ji" | "o" | "u".
 cBE = "be".
 cBEhO = "be'o".
 cBIhE = "bi'e".
@@ -30,6 +31,8 @@ cBAI =
 	| "tai" | "ti'i" | "ti'u" | "tu'i"
 	| "va'o" | "va'u"
 	| "zau" | "zu'e".
+cBEI = "bei".
+cBIhI = "bi'i" | "bi'o" | "mi'i".
 cBO = "bo".
 cBOI = "boi".
 cBRIVLA = "." {letter} terminalvowel ".".
@@ -43,11 +46,17 @@ cBY = cBY1 | cBY2.
 		| "xy" | "zy"
 		| "y'y".
 cCAhA = "ca'a" | "ka'e" | "nu'o" | "pu'i".
+cCAI = "cai" | "cu'i" | "pei" | "ru'e" | "sai".
+cCEhE = "ce'e".
 cCEI = "cei".
 cCMEVLA = "." {letter} consonant ".".
 cCO = "co".
+cCOI = "be'e" | "coi" | "co'o" | "fe'o" | "fi'i" | "je'e" | "ju'i" | "ke'o" | "ki'e" | "mi'e" | "mu'o" | "nu'e" | "pe'u" | "re'i" | "ta'a" | "vi'o".
 cCU = "cu".
 cCUhE = "cu'e" | "nau".
+cDAhO = "da'o".
+cDOhU = "do'u".
+cDOI = "doi".
 cFA = "fa" | "fai" | "fe" | "fi" | "fi'a" | "fo" | "fu".
 cFAhA = cFAhA1 | cFAhA2 | cFAhA3.
 	cFAhA1 = "be'a" | "du'a" | "ne'u" | "vu'a".
@@ -58,17 +67,25 @@ cFEhE = "fe'e".
 cFEhU = "fe'u".
 cFOI = "foi".
 cFUhA = "fu'a".
+cFUhE = "fu'e".
+cFUhO = "fu'o".
 cGA = "ga" | "ge" | "ge'i" | "go" | "gu".
+cGAhO = "ga'o" | "ke'i".
+cGEhU = "ge'u".
 cGI = "gi".
+cGIhA = "gi'a" | "gi'i" | "gi'o" | "gi'u".
 cGOhA =
 	"bu'a" | "bu'e" | "bu'i"
 	| "co'e" | "du"
 	| "go'a" | "go'e" | "go'i" | "go'o" | "go'u"
 	| "mo" | "nei" | "no'a".
+cGOI = "goi" | "ne" | "no'u" | "pe" | "po'e" | "po'u".
 cGUhA = "gu'a" | "gu'e" | "gu'i" | "gu'o" | "gu'u".
 cI = "i".
+cJA = "ja" | "je" | "je'i" | "jo" | "ju".
 cJAI = "jai".
 cJOhI = "jo'i".
+cJOI = "ce" | "ce'o" | "fa'u" | "jo'e" | "joi" | "ju'e" | "ku'a" | "pi'u".
 cKE = "ke".
 cKEhE = "ke'e".
 cKEI = "kei".
@@ -87,16 +104,20 @@ cKOhA = cKOhA1 | cKOhA2 | cKOhA3 | cKOhA4 | cKOhA5 | cKOhA6 | cKOhA7 | cKOhA8.
 	cKOhA8 = "ce'u".
 cKU = "ku".
 cKUhE = "ku'e".
+cKUhO = "ku'o".
 cLA = "la" | "la'i" | "lai".
 cLAhE = "la'e" | "lu'a" | "lu'e" | "lu'i" | "lu'o" | "tu'a" | "vu'i".
 cLAU = "ce'a" | "lau" | "tau" | "zai".
 cLE = "le" | "le'e" | "le'i" | "lei" | "lo" | "lo'e" | "lo'i" | "loi".
+cLEhU = "le'u".
 cLI = "li" | "me'o".
 cLIhU = "li'u".
 cLU = "lu".
 cLOhO = "lo'o".
+cLOhU = "lo'u".
 cLUhU = "lu'u".
 cMAhO = "ma'o".
+cMAI = "mai" | "mo'o".
 cME = "me".
 cMEhU = "me'u".
 cMOhE = "mo'e".
@@ -108,6 +129,7 @@ cNAhU = "na'u".
 cNAI = "nai".
 cNIhE = "ni'e".
 cNIhO = "ni'o" | "no'i".
+cNOI = "noi" | "poi" | "voi".
 cNU = "jei" | "ka" | "li'i" | "mu'e" | "ni" | "nu" | "pu'u" | "si'o" | "su'u" | "za'i" | "zu'o".
 cNUhA = "nu'a".
 cNUhI = "nu'i".
@@ -121,29 +143,57 @@ cPA = cPA1 | cPA2 | cPA3 | cPA4 | cPA5.
 		| "so'a" | "so'e" | "so'i" | "so'o" | "so'u"
 		| "su'e" | "su'o" | "xo".
 	cPA5 = "ci'i" | "ka'o" | "pai" | "tu'o".
+cPEhE = "pe'e".
 cPEhO = "pe'o".
 cPU = "ba" | "ca" | "pu".
 cRAhO = "ra'o".
 cROI = "re'u" | "roi".
 cSE = "se" | "te" | "ve" | "xe".
+cSEI = "sei" | "ti'o".
+cSEhU = "se'u".
+cSOI = "soi".
 cTAhE = "di'i" | "na'o" | "ru'i" | "ta'e".
 cTEhU = "te'u".
 cTEI = "tei".
+cTO = "to" | "to'i".
+cTOI = "toi".
+cTUhE = "tu'e".
+cTUhU = "tu'u".
+cUI = cUI1 | cUI2 | cUI3 | cUI4 | cUI5 | cUI6 | cUI7.
+	cUI1 =
+		"a'a" | "a'e" | "a'i" | "ai" | "a'o" | "a'u" | "au"
+		| "e'a" | "e'e" | "e'i" | "ei" | "e'o" | "e'u"
+		| "i'a" | "ia" | "i'e" | "ie" | "i'i" | "ii" | "i'o" | "io" | "i'u" | "iu"
+		| "o'a" | "o'e" | "o'i" | "oi" | "o'o" | "o'u"
+		| "u'a" | "ua" | "u'e" | "ue" | "u'i" | "ui" | "u'o" | "uo" | "u'u" | "uu".
+	cUI2 = "ba'a" | "ca'e" | "ja'o" | "ju'a" | "ka'u" | "pe'i" | "ru'a" | "se'o" | "su'a" | "ti'e" | "za'a".
+	cUI3 = "ba'u" | "da'i" | "do'a" | "je'u" | "ke'u" | "la'a" | "li'a" | "mu'a" | "pa'e" | "ra'u" | "sa'e" | "sa'u" | "ta'o" | "to'u" | "va'i" | "zu'u".
+	cUI4 = "re'e" | "ro'a" | "ro'e" | "ro'i" | "ro'o" | "ro'u".
+	cUI5 = "be'u" | "dai" | "fu'i" | "ju'o" | "le'o" | "ri'e" | "se'a" | "se'i" | "vu'e" | "zo'o".
+	cUI6 = "ge'e" | "ki'a" | "xu".
+	cUI7 = "bu'o".
 cVA = "va" | "vi" | "vu".
 cVAU = "vau".
 cVEhA = "ve'i" | "ve'a" | "ve'u" | "ve'e".
+cVEhO = "ve'o".
+cVEI = "vei".
 cVIhA = "vi'i" | "vi'a" | "vi'u" | "vi'e".
 cVUhO = "vu'o".
-cVUhU = cVUhU1 | cVUhU2 | cVUhU3.
+cVUhU = cVUhU1 | cVUhU2 | cVUhU3 | cVUhU4.
 	cVUhU1 = "fe'i" | "pi'i" | "su'i" | "vu'u".
 	cVUhU2 =  "fa'i" | "gei" | "ju'u" | "pa'i" | "te'a".
 	cVUhU3 =  "cu'a" | "de'o" | "fe'a" | "ne'o" | "va'a".
 	cVUhU4 = "pi'a" | "re'a" | "ri'o" | "sa'i" | "sa'o" | "si'i".
+cXI = "xi".
+cY = "y".
 cZAhO = "ba'o" | "ca'o" | "co'a" | "co'i" | "co'u" | "de'a" | "di'a" | "pu'o" | "za'o".
 cZEI = "zei".
 cZEhA = "ze'i" | "ze'a" | "ze'u" | "ze'e".
 cZI = "zi" | "za" | "zu".
+cZIhE = "zi'e".
 cZO = "zo".
+cZOhU = "zo'u".
+cZOI = "la'o" | "zoi".
 
 text = [{cNAI}] [{cCMEVLA} [{free}] | text_R] [joik_jek] text_1.
 	text_R1 = indicators.
