@@ -4,7 +4,6 @@ import (
 	"bytes"
 	"fmt"
 	"os"
-	"time"
 
 	"golang.org/x/exp/ebnf"
 )
@@ -26,12 +25,14 @@ func tcidujegenturfa_i() (ebnf.Grammar, error) {
 		return nil, fmt.Errorf("fliba lonu genturfa'i - %w", selsre)
 	}
 
+	if selsre = ebnf.Verify(gerna, "text"); selsre != nil {
+		return nil, fmt.Errorf("fliba lonu cipcta - %w", selsre)
+	}
+
 	return gerna, nil
 }
 
 func main() {
-	fmt.Println("coi")
-
 	gerna, selsre := tcidujegenturfa_i()
 	if selsre != nil {
 		fmt.Println("fliba lonu tcidu je genturfa'i -", selsre)
@@ -65,18 +66,4 @@ func main() {
 			fmt.Println("*ebnf.Bad")
 		}
 	}
-
-	for ; ; time.Sleep(100 * time.Millisecond) {
-		gerna, selsre := tcidujegenturfa_i()
-		if selsre != nil {
-			fmt.Println("fliba lonu tcidu je genturfa'i -", selsre)
-			continue
-		}
-
-		if selsre = ebnf.Verify(gerna, "text"); selsre != nil {
-			fmt.Println("fliba lonu cipcta -", selsre)
-			continue
-		}
-	}
-
 }
