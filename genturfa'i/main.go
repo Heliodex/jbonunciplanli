@@ -5,10 +5,10 @@ import (
 	"fmt"
 	"os"
 
-	"golang.org/x/exp/ebnf"
+	"genturfa_i/bynyfys"
 )
 
-const datnyveicme = "bynyfys"
+const datnyveicme = "bynyfys pa"
 
 func tcidujegenturfa_i() (ebnf.Grammar, error) {
 	seltcidu, selsre := os.ReadFile(datnyveicme)
