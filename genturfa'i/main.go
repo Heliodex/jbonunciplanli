@@ -1,69 +1,74 @@
 package main
 
 import (
-	"bytes"
+	"flag"
 	"fmt"
+	"io"
 	"os"
+	"path/filepath"
+	"strings"
 
-	"genturfa_i/bynyfys"
+	"genturfa_i/lojbo"
 )
 
 const datnyveicme = "bynyfys pa"
 
-func tcidujegenturfa_i() (ebnf.Grammar, error) {
-	seltcidu, selsre := os.ReadFile(datnyveicme)
-	if selsre != nil {
-		return nil, fmt.Errorf("fliba lonu tcidu - %w", selsre)
+// gernaDatnyvei finds the grammar whether the program runs inside the
+// genturfa'i directory or from the repository root.
+func gernaDatnyvei(name string) string {
+	if _, err := os.Stat(name); err == nil {
+		return name
 	}
-
-	seltcidu = bytes.ReplaceAll(seltcidu, []byte{'<'}, []byte{'['})
-	seltcidu = bytes.ReplaceAll(seltcidu, []byte{'>'}, []byte{']'})
-	tcidu := bytes.NewBuffer(seltcidu)
-
-	gerna, selsre := ebnf.Parse(datnyveicme, tcidu)
-	if selsre != nil {
-		return nil, fmt.Errorf("fliba lonu genturfa'i - %w", selsre)
+	alt := filepath.Join("genturfa'i", name)
+	if _, err := os.Stat(alt); err == nil {
+		return alt
 	}
-
-	if selsre = ebnf.Verify(gerna, "text"); selsre != nil {
-		return nil, fmt.Errorf("fliba lonu cipcta - %w", selsre)
-	}
-
-	return gerna, nil
+	return name
 }
 
 func main() {
-	gerna, selsre := tcidujegenturfa_i()
+	var (
+		gernaCmene = flag.String("g", datnyveicme, "datnyvei be fi lo gerna")
+		datnyvei   = flag.String("f", "", "datnyvei be lo jufra")
+		xisku      = flag.Bool("x", false, "jarco lo gerna stura")
+	)
+	flag.Parse()
+
+	gerna, selsre := lojbo.Load(gernaDatnyvei(*gernaCmene))
 	if selsre != nil {
-		fmt.Println("fliba lonu tcidu je genturfa'i -", selsre)
-		return
+		fmt.Fprintln(os.Stderr, selsre)
+		os.Exit(1)
 	}
 
-	for cmene, genjva := range gerna {
-		mekso := genjva.Expr
-
-		fmt.Println(cmene, ":", mekso)
-		switch mekso.(type) {
-		case ebnf.Alternative:
-			fmt.Println("ebnf.Alternative")
-		case ebnf.Sequence:
-			fmt.Println("ebnf.Sequence")
-		case *ebnf.Name:
-			fmt.Println("*ebnf.Name")
-		case *ebnf.Token:
-			fmt.Println("*ebnf.Token")
-		case *ebnf.Range:
-			fmt.Println("*ebnf.Range")
-		case *ebnf.Group:
-			fmt.Println("*ebnf.Group")
-		case *ebnf.Option:
-			fmt.Println("*ebnf.Option")
-		case *ebnf.Repetition:
-			fmt.Println("*ebnf.Repetition")
-		case *ebnf.Production:
-			fmt.Println("*ebnf.Production")
-		case *ebnf.Bad:
-			fmt.Println("*ebnf.Bad")
+	var tcidu []byte
+	switch {
+	case *datnyvei != "":
+		var selsre error
+		tcidu, selsre = os.ReadFile(*datnyvei)
+		if selsre != nil {
+			fmt.Fprintln(os.Stderr, "fliba lonu tcidu -", selsre)
+			os.Exit(1)
 		}
+	case flag.NArg() > 0:
+		tcidu = []byte(strings.Join(flag.Args(), " "))
+	default:
+		var selsre error
+		tcidu, selsre = io.ReadAll(os.Stdin)
+		if selsre != nil {
+			fmt.Fprintln(os.Stderr, "fliba lonu tcidu -", selsre)
+			os.Exit(1)
+		}
+	}
+
+	stura, selsre := gerna.Parse(string(tcidu))
+	if selsre != nil {
+		fmt.Fprintln(os.Stderr, selsre)
+		os.Exit(1)
+	}
+
+	if *xisku {
+		fmt.Print(stura)
+	} else {
+		fmt.Println("je'u")
 	}
 }
