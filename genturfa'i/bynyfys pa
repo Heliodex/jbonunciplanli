@@ -141,10 +141,10 @@ cPA = cPA1 | cPA2 | cPA3 | cPA4 | cPA5.
 	cPA2 = "dau" | "fei" | "gai" | "jau" | "rei" | "vai".
 	cPA3 = "ce'i" | "fi'u" | "ki'o" | "ma'u" | "me'i" | "ni'u" | "pi" | "pi'e" | "ra'e" | "za'u".
 	cPA4 =
-		"da'a" | "du'e" | "ji'i" | "mo'a" | "no'o" | "rau" | "ro"
+		"da'a" | "du'e" | "ji'i" | "mo'a" | "rau" | "ro"
 		| "so'a" | "so'e" | "so'i" | "so'o" | "so'u"
-		| "su'e" | "su'o" | "te'o" | "xo".
-	cPA5 = "ci'i" | "ka'o" | "pai" | "tu'o".
+		| "su'e" | "su'o" | "xo".
+	cPA5 = "ci'i" | "ka'o" | "no'o" | "pai" | "te'o" | "tu'o".
 cPEhE = "pe'e".
 cPEhO = "pe'o".
 cPU = "ba" | "ca" | "pu".
