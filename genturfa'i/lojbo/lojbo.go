@@ -108,9 +108,9 @@ func (e *Error) Error() string {
 		word = "fa'o"
 	}
 	if len(e.Expected) == 0 {
-		return fmt.Sprintf("fliba fi lo valsi be li %d (%s)", e.Token+1, word)
+		return fmt.Sprintf("fliba bu'u lo valsi be li %d (%s)", e.Token+1, word)
 	}
-	return fmt.Sprintf("fliba fi lo valsi be li %d (%s) .i se kakne lo nu jmina %s",
+	return fmt.Sprintf("fliba bu'u lo valsi be li %d (%s) .i se kakne lo nu jmina %s",
 		e.Token+1, word, strings.Join(e.Expected, " | "))
 }
 
