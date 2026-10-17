@@ -161,7 +161,7 @@ cTO = "to" | "to'i".
 cTOI = "toi".
 cTUhE = "tu'e".
 cTUhU = "tu'u".
-cUI = cUI1 | cUI2 | cUI3 | cUI3a | cUI3b | cUI3c | cUI4 | cUI5 | cUI6 | cUI7 | cUI8.
+cUI = cUI1 | cUI2 | cUI3 | cUI3a | cUI3b | cUI3c | cUI4 | cUI5 | cUI6 | cUI7.
 	cUI1 =
 		"a'a" | "a'e" | "a'i" | "ai" | "a'o" | "a'u" | "au"
 		| "e'a" | "e'e" | "e'i" | "ei" | "e'o" | "e'u"
