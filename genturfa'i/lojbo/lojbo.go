@@ -4,10 +4,11 @@ package lojbo
 
 import (
 	"fmt"
+	"maps"
 	"sort"
 	"strings"
 
-	"genturfa_i/bynyfys"
+	ebnf "genturfa_i/bynyfys"
 )
 
 // anyWordCost penalises readings that treat a word as a catch-all word
@@ -481,11 +482,12 @@ func (p *Parser) evalExpr(e *expr, pos int) result {
 		// whole words. A syntax production has no bare token.
 		r = result{}
 	case kindName:
-		if e.name == "any_word" {
+		switch e.name {
+		case "any_word":
 			r = p.evalAnyWord(pos)
-		} else if e.name == "anything" {
+		case "anything":
 			r = p.evalAnything(pos)
-		} else {
+		default:
 			r = p.evalName(e.name, pos)
 		}
 	case kindAlt:
@@ -508,9 +510,7 @@ func (p *Parser) evalExpr(e *expr, pos int) result {
 	case kindOption:
 		r = make(result)
 		if len(e.kids) == 1 {
-			for end, node := range p.evalExpr(e.kids[0], pos) {
-				r[end] = node
-			}
+			maps.Copy(r, p.evalExpr(e.kids[0], pos))
 		}
 		if old, ok := r[pos]; !ok || nodeCost(old) > 0 {
 			r[pos] = nil
