@@ -96,7 +96,7 @@ cKOhA = cKOhA1 | cKOhA2 | cKOhA3 | cKOhA4 | cKOhA5 | cKOhA6 | cKOhA7 | cKOhA8.
 	cKOhA1 = "da" | "de" | "di".
 	cKOhA2 = "da'e" | "da'u" | "de'e" | "dei" | "de'u" | "di'e" | "di'u" | "do'i".
 	cKOhA3 = "do" | "do'o" | "ko" | "ma'a" | "mi" | "mi'a" | "mi'o".
-	cKOhA4 = 
+	cKOhA4 =
 		"ko'a" | "ko'e" | "ko'i" | "ko'o" | "ko'u"
 		| "fo'a" | "fo'e" | "fo'i" | "fo'o" | "fo'u"
 		| "vo'a" | "vo'e" | "vo'i" | "vo'o" | "vo'u".
@@ -184,9 +184,10 @@ cVEhO = "ve'o".
 cVEI = "vei".
 cVIhA = "vi'i" | "vi'a" | "vi'u" | "vi'e".
 cVUhO = "vu'o".
-cVUhU = cVUhU1 | cVUhU2 | cVUhU3 | cVUhU4.
-	cVUhU1 = "fe'i" | "ge'a" | "pi'i" | "su'i" | "vu'u".
-	cVUhU2 =  "fa'i" | "fu'u" | "gei" | "ju'u" | "pa'i" | "te'a".
+cVUhU = cVUhU0 | cVUhU1 | cVUhU2 | cVUhU3 | cVUhU4.
+	cVUhU0 = "fu'u" | "ge'a".
+	cVUhU1 = "fe'i" | "pi'i" | "su'i" | "vu'u".
+	cVUhU2 =  "fa'i" | "gei" | "ju'u" | "pa'i" | "te'a".
 	cVUhU3 =  "cu'a" | "de'o" | "fe'a" | "ne'o" | "va'a".
 	cVUhU4 = "pi'a" | "re'a" | "ri'o" | "sa'i" | "sa'o" | "si'i".
 cXI = "xi".
